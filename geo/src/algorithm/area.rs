@@ -115,13 +115,15 @@ mod test {
     }
     #[test]
     fn area_polygon_test() {
-        let polygon = polygon![
+        let mut polygon = polygon![
             (x: 0., y: 0.),
             (x: 5., y: 0.),
             (x: 5., y: 6.),
             (x: 0., y: 6.),
             (x: 0., y: 0.)
         ];
+        polygon.exterior_mut(|exterior| exterior.0.reverse());
+
         assert_relative_eq!(polygon.area(), 30.);
     }
     #[test]
